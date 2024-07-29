@@ -51,7 +51,7 @@ class Movie extends Equatable {
         releaseDate,
         title,
         video,
-        voteAverage,
+        this.voteAverage,
         voteCount,
       ];
 }
