@@ -17,9 +17,9 @@ void main() {
 
   test('should save tv series to the repository', () async {
     when(mockSeriesRepository.saveWatchlist(testTvSeriesDetail))
-        .thenAnswer((_) async => Right('Added to Watchlist'));
+        .thenAnswer((_) async => const Right('Added to Watchlist'));
 
     final result = await usecase.execute(testTvSeriesDetail);
-    expect(result, Right('Added to Watchlist'));
+    expect(result, const Right('Added to Watchlist'));
   });
 }

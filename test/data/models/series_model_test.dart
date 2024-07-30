@@ -3,7 +3,7 @@ import 'package:ditonton/domain/entities/tv_series.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 void main() {
-  final tSeriesModel = TvSeriesModel(
+  const tSeriesModel = TvSeriesModel(
     posterPath: 'posterPath',
     popularity: 2.3,
     id: 1,
@@ -19,7 +19,7 @@ void main() {
     originalName: 'originalName',
   );
 
-  final tSeries = TvSeries(
+  const tSeries = TvSeries(
     posterPath: 'posterPath',
     popularity: 2.3,
     id: 1,

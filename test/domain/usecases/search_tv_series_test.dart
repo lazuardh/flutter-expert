@@ -15,7 +15,7 @@ void main() {
     usecase = SearchTvSeries(mockSeriesRepository);
   });
 
-  final tQuery = 'Hazbin Hotel';
+  const tQuery = 'Hazbin Hotel';
 
   test('should get list of tv series from the repository', () async {
     when(mockSeriesRepository.searchTvSeries(tQuery))

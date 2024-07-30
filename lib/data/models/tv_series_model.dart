@@ -16,7 +16,7 @@ class TvSeriesModel extends Equatable {
   final String name;
   final String originalName;
 
-  TvSeriesModel({
+  const TvSeriesModel({
     required this.posterPath,
     required this.popularity,
     required this.id,

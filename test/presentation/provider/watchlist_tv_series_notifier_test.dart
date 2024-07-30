@@ -30,11 +30,11 @@ void main() {
       () async {
     // arrange
     when(mockGetWatchlistTvSeries.execute())
-        .thenAnswer((_) async => Right([testWatchlistTvSeries]));
+        .thenAnswer((_) async => const Right([testWatchlistTvSeries]));
     // act
     await provider.fetchWatchlistTvSeries();
     // assert
-    expect(provider.watchlistState, RequestState.Loaded);
+    expect(provider.watchlistState, RequestState.loaded);
     expect(provider.watchlistTvSeries, [testWatchlistTvSeries]);
     expect(listenerCallCount, 2);
   });
@@ -42,11 +42,11 @@ void main() {
   test('should return error when data is unsuccessful', () async {
     // arrange
     when(mockGetWatchlistTvSeries.execute())
-        .thenAnswer((_) async => Left(DatabaseFailure("Can't get data")));
+        .thenAnswer((_) async => const Left(DatabaseFailure("Can't get data")));
     // act
     await provider.fetchWatchlistTvSeries();
     // assert
-    expect(provider.watchlistState, RequestState.Error);
+    expect(provider.watchlistState, RequestState.error);
     expect(provider.message, "Can't get data");
     expect(listenerCallCount, 2);
   });

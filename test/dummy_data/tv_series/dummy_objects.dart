@@ -8,7 +8,7 @@ import 'package:ditonton/domain/entities/season.dart';
 import 'package:ditonton/domain/entities/series_detail.dart';
 import 'package:ditonton/domain/entities/tv_series.dart';
 
-final tTvSeriesModel = TvSeriesModel(
+const tTvSeriesModel = TvSeriesModel(
   posterPath: '/jIhL6mlT7AblhbHJgEoiBIOUVl1.jpg',
   popularity: 29.780826,
   id: 1399,
@@ -17,15 +17,15 @@ final tTvSeriesModel = TvSeriesModel(
   overview:
       'Seven noble families fight for control of the mythical land of Westeros. Friction between the houses leads to full-scale war. All while a very ancient evil awakens in the farthest north. Amidst the war, a neglected military order of misfits, the Night\'s Watch, is all that stands between the realms of men and icy horrors beyond.',
   firstAirDate: '2011-04-17',
-  originCountry: const ['US'],
-  genreIds: const [10765, 10759, 18],
+  originCountry: ['US'],
+  genreIds: [10765, 10759, 18],
   originalLanguage: 'en',
   voteCount: 1172,
   name: 'Hazbin Hotel',
   originalName: 'Hazbin Hotel',
 );
 
-final testTvSeries = TvSeries(
+const testTvSeries = TvSeries(
   posterPath: '/jIhL6mlT7AblhbHJgEoiBIOUVl1.jpg',
   popularity: 29.780826,
   id: 1399,
@@ -34,8 +34,8 @@ final testTvSeries = TvSeries(
   overview:
       'Seven noble families fight for control of the mythical land of Westeros. Friction between the houses leads to full-scale war. All while a very ancient evil awakens in the farthest north. Amidst the war, a neglected military order of misfits, the Night\'s Watch, is all that stands between the realms of men and icy horrors beyond.',
   firstAirDate: '2011-04-17',
-  originCountry: const ['US'],
-  genreIds: const [10765, 10759, 18],
+  originCountry: ['US'],
+  genreIds: [10765, 10759, 18],
   originalLanguage: 'en',
   voteCount: 1172,
   name: 'Hazbin Hotel',
@@ -45,7 +45,7 @@ final testTvSeries = TvSeries(
 final tTvSeriesModelList = [tTvSeriesModel];
 final testSeriesList = [testTvSeries];
 
-final testTvSeriesDetail = TvSeriesDetail(
+const testTvSeriesDetail = TvSeriesDetail(
   backdropPath: 'backdropPath',
   firstAirDate: '2022-10-10',
   genres: [Genre(id: 1, name: 'Drama')],
@@ -74,19 +74,19 @@ final testTvSeriesDetail = TvSeriesDetail(
   voteCount: 1200,
 );
 
-final tTvSeriesResponse = TvSeriesDetailModel(
+const tTvSeriesResponse = TvSeriesDetailModel(
   backdropPath: 'backdropPath',
   firstAirDate: '2022-10-10',
   genres: [GenreModel(id: 1, name: 'Drama')],
   homepage: 'https://google.com',
   id: 1,
   inProduction: false,
-  languages: const ['en'],
+  languages: ['en'],
   lastAirDate: '2022-10-10',
   name: 'name',
   numberOfEpisodes: 12,
   numberOfSeasons: 6,
-  originCountry: const ['US'],
+  originCountry: ['US'],
   originalLanguage: 'originalLanguage',
   originalName: 'originalName',
   overview: 'overview',
@@ -110,14 +110,14 @@ final tTvSeriesResponse = TvSeriesDetailModel(
   voteCount: 1200,
 );
 
-final testWatchlistTvSeries = TvSeries.watchlist(
+const testWatchlistTvSeries = TvSeries.watchlist(
   id: 1,
   name: 'name',
   posterPath: 'posterPath',
   overview: 'overview',
 );
 
-final testTvSeriesTable = TVSeriesTable(
+const testTvSeriesTable = TVSeriesTable(
   id: 1,
   name: 'name',
   posterPath: 'posterPath',

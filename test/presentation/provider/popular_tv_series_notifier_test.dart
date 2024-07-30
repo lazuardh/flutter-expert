@@ -25,7 +25,7 @@ void main() {
       });
   });
 
-  final tSeries = TvSeries(
+  const tSeries = TvSeries(
     posterPath: '/path.jpg',
     popularity: 2.3,
     id: 1,
@@ -49,7 +49,7 @@ void main() {
 
     notifier.fetchPopularSeries();
 
-    expect(notifier.state, RequestState.Loading);
+    expect(notifier.state, RequestState.loading);
     expect(listenerCallCount, 1);
   });
 
@@ -59,18 +59,18 @@ void main() {
 
     await notifier.fetchPopularSeries();
 
-    expect(notifier.state, RequestState.Loaded);
+    expect(notifier.state, RequestState.loaded);
     expect(notifier.tvSeries, tSeriesList);
     expect(listenerCallCount, 2);
   });
 
   test('should return error when data is unsuccessful', () async {
     when(mockGetPopularTvSeries.execute())
-        .thenAnswer((_) async => Left(ServerFailure('Server Failure')));
+        .thenAnswer((_) async => const Left(ServerFailure('Server Failure')));
 
     await notifier.fetchPopularSeries();
 
-    expect(notifier.state, RequestState.Error);
+    expect(notifier.state, RequestState.error);
     expect(notifier.message, "Server Failure");
     expect(listenerCallCount, 2);
   });

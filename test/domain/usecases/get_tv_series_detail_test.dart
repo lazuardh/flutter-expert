@@ -14,15 +14,15 @@ void main() {
     usecase = GetTvSeriesDetail(mockSeriesRepository);
   });
 
-  final tId = 1;
+  const tId = 1;
 
   test('should get movie detail from the repository', () async {
     // arrange
     when(mockSeriesRepository.getTvSeriesDetail(tId))
-        .thenAnswer((_) async => Right(testTvSeriesDetail));
+        .thenAnswer((_) async => const Right(testTvSeriesDetail));
     // act
     final result = await usecase.execute(tId);
     // assert
-    expect(result, Right(testTvSeriesDetail));
+    expect(result, const Right(testTvSeriesDetail));
   });
 }

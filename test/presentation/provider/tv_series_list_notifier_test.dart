@@ -34,7 +34,7 @@ void main() {
       });
   });
 
-  final tSeries = TvSeries(
+  const tSeries = TvSeries(
     posterPath: '/path.jpg',
     popularity: 2.3,
     id: 1,
@@ -54,7 +54,7 @@ void main() {
 
   group('now airing tv series', () {
     test('initialState should be Empty', () {
-      expect(provider.airingTvState, equals(RequestState.Empty));
+      expect(provider.airingTvState, equals(RequestState.empty));
     });
 
     test('should get data from the usecase', () async {
@@ -74,7 +74,7 @@ void main() {
       // act
       provider.fetchAiringTvSeries();
       // assert
-      expect(provider.airingTvState, RequestState.Loading);
+      expect(provider.airingTvState, RequestState.loading);
     });
 
     test('should change movies when data is gotten successfully', () async {
@@ -84,7 +84,7 @@ void main() {
       // act
       await provider.fetchAiringTvSeries();
       // assert
-      expect(provider.airingTvState, RequestState.Loaded);
+      expect(provider.airingTvState, RequestState.loaded);
       expect(provider.airingTvSeries, tSeriesList);
       expect(listenerCallCount, 2);
     });
@@ -92,11 +92,11 @@ void main() {
     test('should return error when data is unsuccessful', () async {
       // arrange
       when(mockGetAiringTvSeries.execute())
-          .thenAnswer((_) async => Left(ServerFailure('Server Failure')));
+          .thenAnswer((_) async => const Left(ServerFailure('Server Failure')));
       // act
       await provider.fetchAiringTvSeries();
       // assert
-      expect(provider.airingTvState, RequestState.Error);
+      expect(provider.airingTvState, RequestState.error);
       expect(provider.message, 'Server Failure');
       expect(listenerCallCount, 2);
     });
@@ -110,7 +110,7 @@ void main() {
       // act
       provider.fetchPopularSeries();
       // assert
-      expect(provider.popularTvSeriesState, RequestState.Loading);
+      expect(provider.popularTvSeriesState, RequestState.loading);
       // verify(provider.setState(RequestState.Loading));
     });
 
@@ -122,7 +122,7 @@ void main() {
       // act
       await provider.fetchPopularSeries();
       // assert
-      expect(provider.popularTvSeriesState, RequestState.Loaded);
+      expect(provider.popularTvSeriesState, RequestState.loaded);
       expect(provider.popularTvSeries, tSeriesList);
       expect(listenerCallCount, 2);
     });
@@ -130,11 +130,11 @@ void main() {
     test('should return error when data is unsuccessful', () async {
       // arrange
       when(mockGetPopularTvSeries.execute())
-          .thenAnswer((_) async => Left(ServerFailure('Server Failure')));
+          .thenAnswer((_) async => const Left(ServerFailure('Server Failure')));
       // act
       await provider.fetchPopularSeries();
       // assert
-      expect(provider.popularTvSeriesState, RequestState.Error);
+      expect(provider.popularTvSeriesState, RequestState.error);
       expect(provider.message, 'Server Failure');
       expect(listenerCallCount, 2);
     });
@@ -148,7 +148,7 @@ void main() {
       // act
       provider.fetchTopRatedSeries();
       // assert
-      expect(provider.topRatedSeriesState, RequestState.Loading);
+      expect(provider.topRatedSeriesState, RequestState.loading);
     });
 
     test('should change movies data when data is gotten successfully',
@@ -159,7 +159,7 @@ void main() {
       // act
       await provider.fetchTopRatedSeries();
       // assert
-      expect(provider.topRatedSeriesState, RequestState.Loaded);
+      expect(provider.topRatedSeriesState, RequestState.loaded);
       expect(provider.topRatedTvSeries, tSeriesList);
       expect(listenerCallCount, 2);
     });
@@ -167,11 +167,11 @@ void main() {
     test('should return error when data is unsuccessful', () async {
       // arrange
       when(mockGetTopRatedTvSeries.execute())
-          .thenAnswer((_) async => Left(ServerFailure('Server Failure')));
+          .thenAnswer((_) async => const Left(ServerFailure('Server Failure')));
       // act
       await provider.fetchTopRatedSeries();
       // assert
-      expect(provider.topRatedSeriesState, RequestState.Error);
+      expect(provider.topRatedSeriesState, RequestState.error);
       expect(provider.message, 'Server Failure');
       expect(listenerCallCount, 2);
     });

@@ -25,17 +25,17 @@ class _TopRatedTvSeriesPageState extends State<TopRatedTvSeriesPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Top Rated Tv Series'),
+        title: const Text('Top Rated Tv Series'),
       ),
       body: Padding(
         padding: const EdgeInsets.all(8.0),
         child: Consumer<TopRatedTvSeriesNotifier>(
           builder: (context, data, child) {
-            if (data.state == RequestState.Loading) {
-              return Center(
+            if (data.state == RequestState.loading) {
+              return const Center(
                 child: CircularProgressIndicator(),
               );
-            } else if (data.state == RequestState.Loaded) {
+            } else if (data.state == RequestState.loaded) {
               return ListView.builder(
                 itemBuilder: (context, index) {
                   final tv = data.tvSeries[index];
@@ -45,7 +45,7 @@ class _TopRatedTvSeriesPageState extends State<TopRatedTvSeriesPage> {
               );
             } else {
               return Center(
-                key: Key('error_message'),
+                key: const Key('error_message'),
                 child: Text(data.message),
               );
             }

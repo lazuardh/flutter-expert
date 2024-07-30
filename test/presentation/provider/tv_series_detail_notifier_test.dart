@@ -48,12 +48,12 @@ void main() {
       });
   });
 
-  final tId = 1;
+  const tId = 1;
   final tTvSeries = <TvSeries>[testTvSeries];
 
-  void _arrangeUsecase() {
+  void arrangeUsecase() {
     when(mockGetTvSeriesDetail.execute(tId))
-        .thenAnswer((_) async => Right(testTvSeriesDetail));
+        .thenAnswer((_) async => const Right(testTvSeriesDetail));
     when(mockGetTvSeriesRecommendations.execute(tId))
         .thenAnswer((_) async => Right(tTvSeries));
   }
@@ -61,7 +61,7 @@ void main() {
   group('Get Tv Series Detail', () {
     test('should get data from the usecase', () async {
       // arrange
-      _arrangeUsecase();
+      arrangeUsecase();
       // act
       await provider.fetchTvSeriesDetail(tId);
       // assert
@@ -71,21 +71,21 @@ void main() {
 
     test('should change state to Loading when usecase is called', () {
       // arrange
-      _arrangeUsecase();
+      arrangeUsecase();
       // act
       provider.fetchTvSeriesDetail(tId);
       // assert
-      expect(provider.seriesState, RequestState.Loading);
+      expect(provider.seriesState, RequestState.loading);
       expect(listenerCallCount, 1);
     });
 
     test('should change movie when data is gotten successfully', () async {
       // arrange
-      _arrangeUsecase();
+      arrangeUsecase();
       // act
       await provider.fetchTvSeriesDetail(tId);
       // assert
-      expect(provider.seriesState, RequestState.Loaded);
+      expect(provider.seriesState, RequestState.loaded);
       expect(provider.tvSeries, testTvSeriesDetail);
       expect(listenerCallCount, 3);
     });
@@ -93,11 +93,11 @@ void main() {
     test('should change recommendation movies when data is gotten successfully',
         () async {
       // arrange
-      _arrangeUsecase();
+      arrangeUsecase();
       // act
       await provider.fetchTvSeriesDetail(tId);
       // assert
-      expect(provider.seriesState, RequestState.Loaded);
+      expect(provider.seriesState, RequestState.loaded);
       expect(provider.tvSeriesRecommendations, tTvSeries);
     });
   });
@@ -105,7 +105,7 @@ void main() {
   group('Get Tv Series Recommendations', () {
     test('should get data from the usecase', () async {
       // arrange
-      _arrangeUsecase();
+      arrangeUsecase();
       // act
       await provider.fetchTvSeriesDetail(tId);
       // assert
@@ -116,24 +116,24 @@ void main() {
     test('should update recommendation state when data is gotten successfully',
         () async {
       // arrange
-      _arrangeUsecase();
+      arrangeUsecase();
       // act
       await provider.fetchTvSeriesDetail(tId);
       // assert
-      expect(provider.recommendationState, RequestState.Loaded);
+      expect(provider.recommendationState, RequestState.loaded);
       expect(provider.tvSeriesRecommendations, tTvSeries);
     });
 
     test('should update error message when request in successful', () async {
       // arrange
       when(mockGetTvSeriesDetail.execute(tId))
-          .thenAnswer((_) async => Right(testTvSeriesDetail));
+          .thenAnswer((_) async => const Right(testTvSeriesDetail));
       when(mockGetTvSeriesRecommendations.execute(tId))
-          .thenAnswer((_) async => Left(ServerFailure('Failed')));
+          .thenAnswer((_) async => const Left(ServerFailure('Failed')));
       // act
       await provider.fetchTvSeriesDetail(tId);
       // assert
-      expect(provider.recommendationState, RequestState.Error);
+      expect(provider.recommendationState, RequestState.error);
       expect(provider.message, 'Failed');
     });
   });
@@ -152,7 +152,7 @@ void main() {
     test('should execute save watchlist when function called', () async {
       // arrange
       when(mockSaveTvSeriesToWatchlist.execute(testTvSeriesDetail))
-          .thenAnswer((_) async => Right('Success'));
+          .thenAnswer((_) async => const Right('Success'));
       when(mockGetWatchlistStatusTvSeries.execute(testTvSeriesDetail.id))
           .thenAnswer((_) async => true);
       // act
@@ -164,7 +164,7 @@ void main() {
     test('should execute remove watchlist when function called', () async {
       // arrange
       when(mockRemoveTvSeriesWatchlist.execute(testTvSeriesDetail))
-          .thenAnswer((_) async => Right('Removed'));
+          .thenAnswer((_) async => const Right('Removed'));
       when(mockGetWatchlistStatusTvSeries.execute(testTvSeriesDetail.id))
           .thenAnswer((_) async => false);
       // act
@@ -176,7 +176,7 @@ void main() {
     test('should update watchlist status when add watchlist success', () async {
       // arrange
       when(mockSaveTvSeriesToWatchlist.execute(testTvSeriesDetail))
-          .thenAnswer((_) async => Right('Added to Watchlist'));
+          .thenAnswer((_) async => const Right('Added to Watchlist'));
       when(mockGetWatchlistStatusTvSeries.execute(testTvSeriesDetail.id))
           .thenAnswer((_) async => true);
       // act
@@ -191,7 +191,7 @@ void main() {
     test('should update watchlist message when add watchlist failed', () async {
       // arrange
       when(mockSaveTvSeriesToWatchlist.execute(testTvSeriesDetail))
-          .thenAnswer((_) async => Left(DatabaseFailure('Failed')));
+          .thenAnswer((_) async => const Left(DatabaseFailure('Failed')));
       when(mockGetWatchlistStatusTvSeries.execute(testTvSeriesDetail.id))
           .thenAnswer((_) async => false);
       // act
@@ -206,13 +206,13 @@ void main() {
     test('should return error when data is unsuccessful', () async {
       // arrange
       when(mockGetTvSeriesDetail.execute(tId))
-          .thenAnswer((_) async => Left(ServerFailure('Server Failure')));
+          .thenAnswer((_) async => const Left(ServerFailure('Server Failure')));
       when(mockGetTvSeriesRecommendations.execute(tId))
           .thenAnswer((_) async => Right(tTvSeries));
       // act
       await provider.fetchTvSeriesDetail(tId);
       // assert
-      expect(provider.seriesState, RequestState.Error);
+      expect(provider.seriesState, RequestState.error);
       expect(provider.message, 'Server Failure');
       expect(listenerCallCount, 2);
     });

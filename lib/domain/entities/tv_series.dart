@@ -15,7 +15,7 @@ class TvSeries extends Equatable {
   final String? name;
   final String? originalName;
 
-  TvSeries({
+  const TvSeries({
     required this.posterPath,
     required this.popularity,
     required this.id,
@@ -31,7 +31,7 @@ class TvSeries extends Equatable {
     required this.originalName,
   });
 
-  TvSeries.watchlist({
+  const TvSeries.watchlist({
     required this.id,
     required this.name,
     required this.overview,

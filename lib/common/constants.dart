@@ -22,7 +22,7 @@ final TextStyle kBodyText = GoogleFonts.poppins(
     fontSize: 13, fontWeight: FontWeight.w400, letterSpacing: 0.25);
 
 // text theme
-final kTextTheme = TextTheme(
+const kTextTheme = TextTheme(
     // headline5: kHeading5,
     // headline6: kHeading6,
     // subtitle1: kSubtitle,
@@ -35,12 +35,10 @@ const kColorScheme = ColorScheme(
   secondary: kPrussianBlue,
   secondaryContainer: kPrussianBlue,
   surface: kRichBlack,
-  background: kRichBlack,
   error: Colors.red,
   onPrimary: kRichBlack,
   onSecondary: Colors.white,
   onSurface: Colors.white,
-  onBackground: Colors.white,
   onError: Colors.white,
   brightness: Brightness.dark,
 );

@@ -10,6 +10,8 @@ import 'package:provider/provider.dart';
 class WatchlistMoviesPage extends StatefulWidget {
   static const ROUTE_NAME = '/watchlist-movie';
 
+  const WatchlistMoviesPage({super.key});
+
   @override
   _WatchlistMoviesPageState createState() => _WatchlistMoviesPageState();
 }
@@ -34,6 +36,7 @@ class _WatchlistMoviesPageState extends State<WatchlistMoviesPage>
     routeObserver.subscribe(this, ModalRoute.of(context)!);
   }
 
+  @override
   void didPopNext() {
     Provider.of<WatchlistMovieNotifier>(context, listen: false)
         .fetchWatchlistMovies();
@@ -46,27 +49,24 @@ class _WatchlistMoviesPageState extends State<WatchlistMoviesPage>
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Watchlist'),
+        title: const Text('Watchlist'),
       ),
       body: Padding(
         padding: const EdgeInsets.all(8.0),
         child: Consumer2<WatchlistMovieNotifier, WatchlistTvSeriesNotifier>(
           builder: (context, movieData, tvSeriesData, child) {
-            if (movieData.watchlistState == RequestState.Loading ||
-                tvSeriesData.watchlistState == RequestState.Loading) {
-              return Center(
+            if (movieData.watchlistState == RequestState.loading ||
+                tvSeriesData.watchlistState == RequestState.loading) {
+              return const Center(
                 child: CircularProgressIndicator(),
               );
-            } else if (movieData.watchlistState == RequestState.Loaded ||
-                tvSeriesData.watchlistState == RequestState.Loaded) {
+            } else if (movieData.watchlistState == RequestState.loaded ||
+                tvSeriesData.watchlistState == RequestState.loaded) {
               return ListView(
                 children: [
-                  ...movieData.watchlistMovies
-                      .map((movie) => MovieCard(movie))
-                      .toList(),
+                  ...movieData.watchlistMovies.map((movie) => MovieCard(movie)),
                   ...tvSeriesData.watchlistTvSeries
-                      .map((tv) => TvSeriesCard(tv))
-                      .toList(),
+                      .map((tv) => TvSeriesCard(tv)),
                 ],
               );
               // ListView.builder(
@@ -78,7 +78,7 @@ class _WatchlistMoviesPageState extends State<WatchlistMoviesPage>
               // );
             } else {
               return Center(
-                key: Key('error_message'),
+                key: const Key('error_message'),
                 child: Text(movieData.message ?? tvSeriesData.message),
               );
             }

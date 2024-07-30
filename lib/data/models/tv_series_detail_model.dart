@@ -28,7 +28,7 @@ class TvSeriesDetailModel extends Equatable {
   final double voteAverage;
   final int voteCount;
 
-  TvSeriesDetailModel({
+  const TvSeriesDetailModel({
     required this.backdropPath,
     required this.firstAirDate,
     required this.genres,
@@ -112,7 +112,7 @@ class TvSeriesDetailModel extends Equatable {
   TvSeriesDetail toEntity() => TvSeriesDetail(
         backdropPath: backdropPath,
         firstAirDate: firstAirDate,
-        genres: this.genres.map((genre) => genre.toEntity()).toList(),
+        genres: genres.map((genre) => genre.toEntity()).toList(),
         id: id,
         lastAirDate: lastAirDate,
         name: name,
@@ -120,7 +120,7 @@ class TvSeriesDetailModel extends Equatable {
         numberOfSeasons: numberOfSeasons,
         overview: overview,
         posterPath: posterPath,
-        seasons: this.seasons.map((season) => season.toEntity()).toList(),
+        seasons: seasons.map((season) => season.toEntity()).toList(),
         status: status,
         tagline: tagline,
         type: type,

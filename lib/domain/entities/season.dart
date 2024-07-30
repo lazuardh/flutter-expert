@@ -9,7 +9,7 @@ class Season extends Equatable {
   final String? posterPath;
   final int seasonNumber;
 
-  Season({
+  const Season({
     required this.airDate,
     required this.episodeCount,
     required this.id,

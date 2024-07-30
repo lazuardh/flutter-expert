@@ -3,7 +3,7 @@ import 'package:ditonton/domain/entities/season.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 void main() {
-  final tSeasonModel = SeasonModel(
+  const tSeasonModel = SeasonModel(
     airDate: "airDate",
     episodeCount: 5,
     id: 1,
@@ -13,7 +13,7 @@ void main() {
     seasonNumber: 1,
   );
 
-  final tSeason = Season(
+  const tSeason = Season(
     airDate: "airDate",
     episodeCount: 5,
     id: 1,

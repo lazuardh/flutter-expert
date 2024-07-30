@@ -10,7 +10,7 @@ class SeasonModel extends Equatable {
   final String? posterPath;
   final int seasonNumber;
 
-  SeasonModel({
+  const SeasonModel({
     required this.airDate,
     required this.episodeCount,
     required this.id,
