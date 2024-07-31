@@ -2,8 +2,10 @@ import 'package:about/about_page.dart';
 import 'package:core/core.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:provider/provider.dart';
 import 'package:ditonton/injection.dart' as di;
+import 'package:search/search.dart';
 
 void main() {
   di.init();
@@ -53,6 +55,9 @@ class MyApp extends StatelessWidget {
         ChangeNotifierProvider(
           create: (_) => di.locator<WatchlistTvSeriesNotifier>(),
         ),
+        BlocProvider(
+          create: (_) => di.locator<SearchMovieBloc>(),
+        )
       ],
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
@@ -95,8 +100,9 @@ class MyApp extends StatelessWidget {
                 builder: (_) => TvSeriesDetailPage(id: id),
                 settings: settings,
               );
-            case SearchPage.ROUTE_NAME:
-              return CupertinoPageRoute(builder: (_) => const SearchPage());
+            case SEARCH_MOVIE_ROUTE:
+              return CupertinoPageRoute(
+                  builder: (_) => const BlocSearchMoviePage());
             case SEARCH_TV_SERIES_ROUTE:
               return CupertinoPageRoute(
                 builder: (_) => const SearchTvSeriesPage(),

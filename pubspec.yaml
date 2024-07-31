@@ -36,11 +36,14 @@ dependencies:
   path_provider: ^2.0.2
   provider: ^6.0.3
   sqflite: ^2.0.0+3
+  flutter_bloc: ^8.0.0
 
   about:
     path: about
   core:
     path: core
+  search: 
+    path: search
 
 
 dev_dependencies:
