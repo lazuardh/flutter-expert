@@ -6,7 +6,7 @@ import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
 import 'package:search/bloc/search_movie_bloc.dart';
 
-import '../../dummy_data/dummy_objects.dart';
+import '../dummy_data/dummy_objects.dart';
 import 'search_movie_bloc_test.mocks.dart';
 
 @GenerateMocks([SearchMovies])
