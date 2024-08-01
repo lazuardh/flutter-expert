@@ -4,6 +4,12 @@ Repository ini merupakan starter project submission kelas Flutter Expert Dicodin
 
 ---
 
+## Build Status Continous Integration
+
+Badge ini menunjukkan status build terbaru dari proyek Anda, seperti apakah build berhasil, gagal, atau sedang berjalan. Ini memberi informasi langsung tentang kesehatan proyek Anda.
+![Build Status](https://api.codemagic.io/apps/66aa0b6d41ceddf85703a4ee/66aa0b6d41ceddf85703a4ed/status_badge.svg)
+
+
 ## Tips Submission Awal
 
 Pastikan untuk memeriksa kembali seluruh hasil testing pada submissionmu sebelum dikirimkan. Karena kriteria pada submission ini akan diperiksa setelah seluruh berkas testing berhasil dijalankan.
