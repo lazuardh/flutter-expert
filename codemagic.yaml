@@ -1,0 +1,25 @@
+workflows:
+  core:
+    name: Unit Testing
+    instance_type: mac_mini_m1
+    environment:
+      flutter: stable
+    scripts:
+      - name: Installing dependencies
+        scripts: flutter pub get
+      - name: Testing for Modularization core
+        working_directory: core
+      - name: Building Android
+        scripts: flutter build appbundle --release
+      - name: Building Ios
+        scripts: flutter build ios --release --no-codesign
+    artifacts: 
+      - build/**/outputs/apk/**/*.apk
+      - build/**/outputs/**/*.aab
+    publishing: 
+      email: 
+        recipients:
+          - habiyanlazuard21@gmail.com
+    triggering:
+      events:
+        - push
