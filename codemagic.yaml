@@ -20,15 +20,9 @@ workflows:
         script: flutter build appbundle --release
       - name: Building Ios
         script: flutter build ios --release --no-codesign
-      - name: Zipping AAB file
-        script: |
-          mkdir -p build/outputs
-          cp build/app/outputs/bundle/release/app.aab build/outputs/runner.aap
-          zip -r build/outputs/runner.aap.zip build/outputs/runner.aap
     artifacts: 
       - build/**/outputs/apk/**/*.apk
       - build/**/outputs/**/*.aab
-      - build/**/outputs/runner.aap.zip
     publishing: 
       email: 
         recipients:
