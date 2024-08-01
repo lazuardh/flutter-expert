@@ -5,6 +5,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:provider/provider.dart';
 import 'package:ditonton/injection.dart' as di;
+import 'package:search/bloc/searchtvseries_bloc.dart';
+import 'package:search/pages/bloc_search_tv_series_page.dart';
 import 'package:search/search.dart';
 
 void main() {
@@ -57,6 +59,9 @@ class MyApp extends StatelessWidget {
         ),
         BlocProvider(
           create: (_) => di.locator<SearchMovieBloc>(),
+        ),
+        BlocProvider(
+          create: (_) => di.locator<SearchtvseriesBloc>(),
         )
       ],
       child: MaterialApp(
@@ -105,8 +110,7 @@ class MyApp extends StatelessWidget {
                   builder: (_) => const BlocSearchMoviePage());
             case SEARCH_TV_SERIES_ROUTE:
               return CupertinoPageRoute(
-                builder: (_) => const SearchTvSeriesPage(),
-              );
+                  builder: (_) => const BlocSearchTvSeriesPage());
             case WatchlistMoviesPage.ROUTE_NAME:
               return MaterialPageRoute(
                   builder: (_) => const WatchlistMoviesPage());
