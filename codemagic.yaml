@@ -9,6 +9,7 @@ workflows:
         script: flutter pub get
       - name: Testing for Modularization core
         working_directory: core
+        script: flutter test --machine
       - name: Building Android
         script: flutter build appbundle --release
       - name: Building Ios
