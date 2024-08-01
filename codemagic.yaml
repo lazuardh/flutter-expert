@@ -1,6 +1,6 @@
 workflows:
-  core:
-    name: Unit Testing
+  ditonton:
+    name: Unit Testing for Application Ditonton
     instance_type: mac_mini_m1
     environment:
       flutter: stable
@@ -9,6 +9,12 @@ workflows:
         script: flutter pub get
       - name: Testing for Modularization core
         working_directory: core
+        script: flutter test --machine
+      - name: Testing for Modularization search
+        working_directory: search
+        script: flutter test --machine
+      - name: Testing for Modularization movies
+        working_directory: movies
         script: flutter test --machine
       - name: Building Android
         script: flutter build appbundle --release
