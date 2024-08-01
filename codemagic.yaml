@@ -6,13 +6,13 @@ workflows:
       flutter: stable
     scripts:
       - name: Installing dependencies
-        scripts: flutter pub get
+        script: flutter pub get
       - name: Testing for Modularization core
         working_directory: core
       - name: Building Android
-        scripts: flutter build appbundle --release
+        script: flutter build appbundle --release
       - name: Building Ios
-        scripts: flutter build ios --release --no-codesign
+        script: flutter build ios --release --no-codesign
     artifacts: 
       - build/**/outputs/apk/**/*.apk
       - build/**/outputs/**/*.aab
