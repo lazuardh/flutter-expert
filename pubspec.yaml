@@ -44,6 +44,8 @@ dependencies:
     path: core
   search: 
     path: search
+  movies:
+    path: movies
 
 
 dev_dependencies:

@@ -41,6 +41,7 @@ import 'package:core/presentation/provider/watchlist_movie_notifier.dart';
 import 'package:core/presentation/provider/watchlist_tv_series_notifier.dart';
 import 'package:http/http.dart' as http;
 import 'package:get_it/get_it.dart';
+import 'package:movies/movies.dart';
 import 'package:search/bloc/searchtvseries_bloc.dart';
 import 'package:search/search.dart';
 
@@ -128,6 +129,21 @@ void init() {
   );
   locator.registerFactory(
     () => SearchtvseriesBloc(locator()),
+  );
+  locator.registerFactory(
+    () => NowPlayingMoviesBloc(
+      getNowPlayingMovies: locator(),
+    ),
+  );
+  locator.registerFactory(
+    () => TopRatedMoviesBloc(
+      getTopRatedMovies: locator(),
+    ),
+  );
+  locator.registerFactory(
+    () => PopularMoviesBloc(
+      getPopularMovies: locator(),
+    ),
   );
 
   /* ========================= Use Case ========================== */

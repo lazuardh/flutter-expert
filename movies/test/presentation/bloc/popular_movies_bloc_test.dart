@@ -16,7 +16,7 @@ void main() {
 
   setUp(() {
     mockGetPopularMovies = MockGetPopularMovies();
-    bloc = PopularMoviesBloc(mockGetPopularMovies);
+    bloc = PopularMoviesBloc(getPopularMovies: mockGetPopularMovies);
   });
 
   test('initial state should be empty', () {

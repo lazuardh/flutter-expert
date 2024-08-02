@@ -16,7 +16,7 @@ void main() {
 
   setUp(() {
     mockGetTopRatedMovies = MockGetTopRatedMovies();
-    getBloc = TopRatedMoviesBloc(mockGetTopRatedMovies);
+    getBloc = TopRatedMoviesBloc(getTopRatedMovies: mockGetTopRatedMovies);
   });
 
   test('initial state should be empty', () {
@@ -45,7 +45,7 @@ void main() {
     'should emit [Loading, Error] when get list data is unsuccessfully',
     build: () {
       when(mockGetTopRatedMovies.execute())
-          .thenAnswer((_) async => Left(ServerFailure('Server Failure')));
+          .thenAnswer((_) async => const Left(ServerFailure('Server Failure')));
 
       return getBloc;
     },
