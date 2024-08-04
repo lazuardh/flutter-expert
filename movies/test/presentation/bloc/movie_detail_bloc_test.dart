@@ -4,7 +4,7 @@ import 'package:dartz/dartz.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
-import 'package:movies/presentation/bloc/movie_detail/movie_detail_bloc.dart';
+import 'package:movies/movies.dart';
 
 import '../../dummy_data/dummy_objects.dart';
 import 'movie_detail_bloc_test.mocks.dart';

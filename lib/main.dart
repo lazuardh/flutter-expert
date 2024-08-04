@@ -4,8 +4,6 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:movies/movies.dart';
-import 'package:movies/presentation/bloc/movie_detail/movie_detail_bloc.dart';
-import 'package:movies/presentation/bloc/watchlist_movie/watchlist_movie_bloc.dart';
 import 'package:movies/presentation/pages/bloc_movie_detail_page.dart';
 import 'package:movies/presentation/pages/bloc_watchlist_page.dart';
 import 'package:provider/provider.dart';

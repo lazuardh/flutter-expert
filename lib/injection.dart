@@ -42,8 +42,6 @@ import 'package:core/presentation/provider/watchlist_tv_series_notifier.dart';
 import 'package:http/http.dart' as http;
 import 'package:get_it/get_it.dart';
 import 'package:movies/movies.dart';
-import 'package:movies/presentation/bloc/movie_detail/movie_detail_bloc.dart';
-import 'package:movies/presentation/bloc/watchlist_movie/watchlist_movie_bloc.dart';
 import 'package:search/bloc/searchtvseries_bloc.dart';
 import 'package:search/search.dart';
 
