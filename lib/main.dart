@@ -4,6 +4,10 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:movies/movies.dart';
+import 'package:movies/presentation/bloc/movie_detail/movie_detail_bloc.dart';
+import 'package:movies/presentation/bloc/watchlist_movie/watchlist_movie_bloc.dart';
+import 'package:movies/presentation/pages/bloc_movie_detail_page.dart';
+import 'package:movies/presentation/pages/bloc_watchlist_page.dart';
 import 'package:provider/provider.dart';
 import 'package:ditonton/injection.dart' as di;
 import 'package:search/bloc/searchtvseries_bloc.dart';
@@ -65,6 +69,9 @@ class MyApp extends StatelessWidget {
           create: (_) => di.locator<SearchtvseriesBloc>(),
         ),
         BlocProvider(
+          create: (_) => di.locator<MovieDetailBloc>(),
+        ),
+        BlocProvider(
           create: (_) => di.locator<NowPlayingMoviesBloc>(),
         ),
         BlocProvider(
@@ -72,6 +79,9 @@ class MyApp extends StatelessWidget {
         ),
         BlocProvider(
           create: (_) => di.locator<PopularMoviesBloc>(),
+        ),
+        BlocProvider(
+          create: (_) => di.locator<WatchlistMovieBloc>(),
         )
       ],
       child: MaterialApp(
@@ -99,7 +109,7 @@ class MyApp extends StatelessWidget {
             case MOVIE_DETAIL_ROUTE:
               final id = settings.arguments as int;
               return MaterialPageRoute(
-                builder: (_) => MovieDetailPage(id: id),
+                builder: (_) => BlocMovieDetailPage(id: id),
                 settings: settings,
               );
             case TV_SERIES_ROUTE:
@@ -123,6 +133,9 @@ class MyApp extends StatelessWidget {
               return CupertinoPageRoute(
                   builder: (_) => const BlocSearchTvSeriesPage());
             case WatchlistMoviesPage.ROUTE_NAME:
+              return MaterialPageRoute(
+                  builder: (_) => const WatchlistMoviesPage());
+            case BlocWatchlistPage.ROUTE_NAME:
               return MaterialPageRoute(
                   builder: (_) => const WatchlistMoviesPage());
             case AboutPage.ROUTE_NAME:

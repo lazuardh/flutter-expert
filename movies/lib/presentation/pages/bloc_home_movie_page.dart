@@ -3,6 +3,7 @@ import 'package:core/core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:movies/presentation/bloc/now_playing_movies/now_playing_movies_bloc.dart';
+import 'package:movies/presentation/pages/bloc_watchlist_page.dart';
 
 import '../bloc/popular_movies/popular_movies_bloc.dart';
 import '../bloc/top_rated_movies/top_rated_movies_bloc.dart';
@@ -57,6 +58,13 @@ class _BlocHomeMoviePageState extends State<BlocHomeMoviePage> {
               title: const Text('Watchlist'),
               onTap: () {
                 Navigator.pushNamed(context, WatchlistMoviesPage.ROUTE_NAME);
+              },
+            ),
+            ListTile(
+              leading: const Icon(Icons.save_alt),
+              title: const Text('Watchlist Bloc'),
+              onTap: () {
+                Navigator.pushNamed(context, BlocWatchlistPage.ROUTE_NAME);
               },
             ),
             ListTile(

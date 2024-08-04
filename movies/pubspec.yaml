@@ -16,6 +16,7 @@ dependencies:
   flutter_bloc: ^8.1.6
   bloc_test: ^9.1.7
   cached_network_image: ^3.3.1
+  flutter_rating_bar: ^4.0.0
 
   core:
     path: ../core
