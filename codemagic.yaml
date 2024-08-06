@@ -19,6 +19,9 @@ workflows:
       - name: Testing for Modularization tv_series
         working_directory: tv_series
         script: flutter test --machine
+      - name: Testing for Modularization watchlist
+        working_directory: watchlist
+        script: flutter test --machine
       - name: Building Android
         script: flutter build appbundle --release
       - name: Building Ios
