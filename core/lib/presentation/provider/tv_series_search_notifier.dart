@@ -1,5 +1,6 @@
 import 'package:core/core.dart';
 import 'package:flutter/foundation.dart';
+import 'package:search/search.dart';
 
 class TvSeriesSearchNotifier extends ChangeNotifier {
   final SearchTvSeries searchTvSeries;

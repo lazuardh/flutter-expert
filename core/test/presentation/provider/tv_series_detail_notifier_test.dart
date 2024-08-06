@@ -3,6 +3,8 @@ import 'package:dartz/dartz.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
+import 'package:tv_series/tv_series.dart';
+import 'package:watchlist/watchlist.dart';
 import '../../dummy_data/tv_series/dummy_objects.dart';
 import 'tv_series_detail_notifier_test.mocks.dart';
 

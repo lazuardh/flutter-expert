@@ -7,26 +7,6 @@ import 'package:core/data/repositories/movie_repository_impl.dart';
 import 'package:core/data/repositories/series_repository_impl.dart';
 import 'package:core/domain/repositories/movie_repository.dart';
 import 'package:core/domain/repositories/series_repository.dart';
-import 'package:core/domain/usecases/get_airing_tv_series.dart';
-import 'package:core/domain/usecases/get_movie_detail.dart';
-import 'package:core/domain/usecases/get_movie_recommendations.dart';
-import 'package:core/domain/usecases/get_now_playing_movies.dart';
-import 'package:core/domain/usecases/get_popular_movies.dart';
-import 'package:core/domain/usecases/get_popular_tv_series.dart';
-import 'package:core/domain/usecases/get_top_rated_movies.dart';
-import 'package:core/domain/usecases/get_top_rated_tv_series.dart';
-import 'package:core/domain/usecases/get_tv_series_detail.dart';
-import 'package:core/domain/usecases/get_tv_series_recommendations.dart';
-import 'package:core/domain/usecases/get_watchlist_movies.dart';
-import 'package:core/domain/usecases/get_watchlist_status.dart';
-import 'package:core/domain/usecases/get_watchlist_status_tv_series.dart';
-import 'package:core/domain/usecases/get_watchlist_tv_series.dart';
-import 'package:core/domain/usecases/remove_tv_series_watchlist.dart';
-import 'package:core/domain/usecases/remove_watchlist.dart';
-import 'package:core/domain/usecases/save_tv_series_watchlist.dart';
-import 'package:core/domain/usecases/save_watchlist.dart';
-import 'package:core/domain/usecases/search_movies.dart';
-import 'package:core/domain/usecases/search_tv_series.dart';
 import 'package:core/presentation/provider/movie_detail_notifier.dart';
 import 'package:core/presentation/provider/movie_list_notifier.dart';
 import 'package:core/presentation/provider/movie_search_notifier.dart';
@@ -42,8 +22,9 @@ import 'package:core/presentation/provider/watchlist_tv_series_notifier.dart';
 import 'package:http/http.dart' as http;
 import 'package:get_it/get_it.dart';
 import 'package:movies/movies.dart';
-import 'package:search/bloc/searchtvseries_bloc.dart';
 import 'package:search/search.dart';
+import 'package:tv_series/tv_series.dart';
+import 'package:watchlist/watchlist.dart';
 
 final locator = GetIt.instance;
 
@@ -157,6 +138,20 @@ void init() {
       getWatchListStatus: locator(),
       saveWatchlist: locator(),
       removeWatchlist: locator(),
+    ),
+  );
+  locator.registerFactory(
+    () => WatchlistTvSeriesBloc(
+      getWatchlistTvSeries: locator(),
+      getWatchListStatusTvSeries: locator(),
+      saveTvSeriesWatchlist: locator(),
+      removeTvSeriesWatchlist: locator(),
+    ),
+  );
+  locator.registerFactory(
+    () => GetAllWatchlistBloc(
+      getWatchlistMovies: locator(),
+      getWatchlistTvSeries: locator(),
     ),
   );
 

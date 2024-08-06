@@ -1,5 +1,6 @@
 import 'package:core/core.dart';
 import 'package:flutter/material.dart';
+import 'package:tv_series/tv_series.dart';
 
 class TopRatedTvSeriesNotifier extends ChangeNotifier {
   final GetTopRatedTvSeries getTopRatedTvSeries;

@@ -1,5 +1,6 @@
 import 'package:core/core.dart';
 import 'package:flutter/material.dart';
+import 'package:movies/movies.dart';
 import 'package:provider/provider.dart';
 
 class WatchlistMoviesPage extends StatefulWidget {
@@ -64,13 +65,6 @@ class _WatchlistMoviesPageState extends State<WatchlistMoviesPage>
                       .map((tv) => TvSeriesCard(tv)),
                 ],
               );
-              // ListView.builder(
-              //   itemBuilder: (context, index) {
-              //     final movie = movieData.watchlistMovies[index];
-              //     return MovieCard(movie);
-              //   },
-              //   itemCount: movieData.watchlistMovies.length,
-              // );
             } else {
               return Center(
                 key: const Key('error_message'),

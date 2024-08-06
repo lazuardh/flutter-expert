@@ -1,5 +1,6 @@
 import 'package:core/core.dart';
 import 'package:flutter/foundation.dart';
+import 'package:watchlist/watchlist.dart';
 
 class WatchlistMovieNotifier extends ChangeNotifier {
   var _watchlistMovies = <Movie>[];

@@ -1,5 +1,6 @@
 import 'package:core/core.dart';
 import 'package:flutter/foundation.dart';
+import 'package:movies/movies.dart';
 
 class PopularMoviesNotifier extends ChangeNotifier {
   final GetPopularMovies getPopularMovies;

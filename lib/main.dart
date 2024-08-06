@@ -4,13 +4,11 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:movies/movies.dart';
-import 'package:movies/presentation/pages/bloc_movie_detail_page.dart';
-import 'package:movies/presentation/pages/bloc_watchlist_page.dart';
 import 'package:provider/provider.dart';
 import 'package:ditonton/injection.dart' as di;
-import 'package:search/bloc/searchtvseries_bloc.dart';
-import 'package:search/pages/bloc_search_tv_series_page.dart';
 import 'package:search/search.dart';
+import 'package:tv_series/tv_series.dart';
+import 'package:watchlist/watchlist.dart';
 
 void main() {
   di.init();
@@ -80,6 +78,12 @@ class MyApp extends StatelessWidget {
         ),
         BlocProvider(
           create: (_) => di.locator<WatchlistMovieBloc>(),
+        ),
+        BlocProvider(
+          create: (_) => di.locator<WatchlistTvSeriesBloc>(),
+        ),
+        BlocProvider(
+          create: (_) => di.locator<GetAllWatchlistBloc>(),
         )
       ],
       child: MaterialApp(
@@ -91,23 +95,22 @@ class MyApp extends StatelessWidget {
           scaffoldBackgroundColor: kRichBlack,
           textTheme: kTextTheme,
         ),
-        home: const BlocHomeMoviePage(),
+        home: const HomeMoviePage(),
         navigatorObservers: [routeObserver],
         onGenerateRoute: (RouteSettings settings) {
           switch (settings.name) {
             case '/home':
-              return MaterialPageRoute(
-                  builder: (_) => const BlocHomeMoviePage());
+              return MaterialPageRoute(builder: (_) => const HomeMoviePage());
             case POPULAR_MOVIES_ROUTE:
               return CupertinoPageRoute(
-                  builder: (_) => const BlocPopularMoviesPage());
+                  builder: (_) => const PopularMoviesPage());
             case TOP_RATED_MOVIE_ROUTE:
               return CupertinoPageRoute(
-                  builder: (_) => const BlocTopRatedMoviesPage());
+                  builder: (_) => const TopRatedMoviesPage());
             case MOVIE_DETAIL_ROUTE:
               final id = settings.arguments as int;
               return MaterialPageRoute(
-                builder: (_) => BlocMovieDetailPage(id: id),
+                builder: (_) => MovieDetailPage(id: id),
                 settings: settings,
               );
             case TV_SERIES_ROUTE:
@@ -126,16 +129,16 @@ class MyApp extends StatelessWidget {
               );
             case SEARCH_MOVIE_ROUTE:
               return CupertinoPageRoute(
-                  builder: (_) => const BlocSearchMoviePage());
+                  builder: (_) => const SearchMoviePage());
             case SEARCH_TV_SERIES_ROUTE:
               return CupertinoPageRoute(
-                  builder: (_) => const BlocSearchTvSeriesPage());
+                  builder: (_) => const SearchTvSeriesPage());
             case WatchlistMoviesPage.ROUTE_NAME:
               return MaterialPageRoute(
                   builder: (_) => const WatchlistMoviesPage());
             case BlocWatchlistPage.ROUTE_NAME:
               return MaterialPageRoute(
-                  builder: (_) => const WatchlistMoviesPage());
+                  builder: (_) => const BlocWatchlistPage());
             case AboutPage.ROUTE_NAME:
               return MaterialPageRoute(builder: (_) => const AboutPage());
             default:

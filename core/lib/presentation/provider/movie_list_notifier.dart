@@ -1,5 +1,6 @@
 import 'package:core/core.dart';
 import 'package:flutter/material.dart';
+import 'package:movies/movies.dart';
 
 class MovieListNotifier extends ChangeNotifier {
   var _nowPlayingMovies = <Movie>[];

@@ -1,5 +1,5 @@
 import 'package:bloc_test/bloc_test.dart';
-import 'package:core/core.dart';
+import 'package:core/utils/failure.dart';
 import 'package:dartz/dartz.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/annotations.dart';
@@ -32,7 +32,7 @@ void main() {
     'should emit [Loading, hasData] when list data gotten is successfully',
     build: () {
       when(mockGetMovieDetail.execute(tId))
-          .thenAnswer((_) async => Right(testMovieDetail));
+          .thenAnswer((_) async => const Right(testMovieDetail));
 
       when(mockGetMovieRecommendations.execute(tId))
           .thenAnswer((_) async => Right(testMovieList));
@@ -64,8 +64,8 @@ void main() {
     act: (bloc) => bloc.add(OnFetchMoviesDetail(tId)),
     expect: () => [
       MovieDetailLoading(),
-      MovieDetailError(message: 'Server Failure'),
-      RecomendationError(message: 'Server Failure')
+      const MovieDetailError(message: 'Server Failure'),
+      const RecomendationError(message: 'Server Failure')
     ],
     verify: (bloc) {
       verify(mockGetMovieDetail.execute(tId));
@@ -77,7 +77,7 @@ void main() {
     'should emit recomendation is  [Loading, empty]',
     build: () {
       when(mockGetMovieDetail.execute(tId))
-          .thenAnswer((_) async => Right(testMovieDetail));
+          .thenAnswer((_) async => const Right(testMovieDetail));
 
       when(mockGetMovieRecommendations.execute(tId))
           .thenAnswer((_) async => const Right([]));

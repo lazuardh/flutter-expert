@@ -2,6 +2,8 @@ import 'package:bloc/bloc.dart';
 import 'package:core/core.dart';
 import 'package:equatable/equatable.dart';
 
+import '../../../domain/usecase/get_popular_movies.dart';
+
 part 'popular_movies_event.dart';
 part 'popular_movies_state.dart';
 

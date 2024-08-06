@@ -3,11 +3,12 @@
 // Do not manually edit this file.
 
 // ignore_for_file: no_leading_underscores_for_library_prefixes
-import 'dart:async' as _i4;
+import 'dart:async' as _i5;
 
 import 'package:core/core.dart' as _i2;
 import 'package:dartz/dartz.dart' as _i3;
 import 'package:mockito/mockito.dart' as _i1;
+import 'package:search/domain/usecase/search_movies.dart' as _i4;
 
 // ignore_for_file: type=lint
 // ignore_for_file: avoid_redundant_argument_values
@@ -46,7 +47,7 @@ class _FakeEither_1<L, R> extends _i1.SmartFake implements _i3.Either<L, R> {
 /// A class which mocks [SearchMovies].
 ///
 /// See the documentation for Mockito's code generation for more information.
-class MockSearchMovies extends _i1.Mock implements _i2.SearchMovies {
+class MockSearchMovies extends _i1.Mock implements _i4.SearchMovies {
   MockSearchMovies() {
     _i1.throwOnMissingStub(this);
   }
@@ -61,13 +62,13 @@ class MockSearchMovies extends _i1.Mock implements _i2.SearchMovies {
       ) as _i2.MovieRepository);
 
   @override
-  _i4.Future<_i3.Either<_i2.Failure, List<_i2.Movie>>> execute(String? query) =>
+  _i5.Future<_i3.Either<_i2.Failure, List<_i2.Movie>>> execute(String? query) =>
       (super.noSuchMethod(
         Invocation.method(
           #execute,
           [query],
         ),
-        returnValue: _i4.Future<_i3.Either<_i2.Failure, List<_i2.Movie>>>.value(
+        returnValue: _i5.Future<_i3.Either<_i2.Failure, List<_i2.Movie>>>.value(
             _FakeEither_1<_i2.Failure, List<_i2.Movie>>(
           this,
           Invocation.method(
@@ -75,5 +76,5 @@ class MockSearchMovies extends _i1.Mock implements _i2.SearchMovies {
             [query],
           ),
         )),
-      ) as _i4.Future<_i3.Either<_i2.Failure, List<_i2.Movie>>>);
+      ) as _i5.Future<_i3.Either<_i2.Failure, List<_i2.Movie>>>);
 }

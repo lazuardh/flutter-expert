@@ -3,11 +3,13 @@
 // Do not manually edit this file.
 
 // ignore_for_file: no_leading_underscores_for_library_prefixes
-import 'dart:async' as _i4;
+import 'dart:async' as _i5;
 
 import 'package:core/core.dart' as _i2;
 import 'package:dartz/dartz.dart' as _i3;
 import 'package:mockito/mockito.dart' as _i1;
+import 'package:movies/domain/usecase/get_movie_detail.dart' as _i4;
+import 'package:movies/domain/usecase/get_movie_recommendations.dart' as _i6;
 
 // ignore_for_file: type=lint
 // ignore_for_file: avoid_redundant_argument_values
@@ -46,7 +48,7 @@ class _FakeEither_1<L, R> extends _i1.SmartFake implements _i3.Either<L, R> {
 /// A class which mocks [GetMovieDetail].
 ///
 /// See the documentation for Mockito's code generation for more information.
-class MockGetMovieDetail extends _i1.Mock implements _i2.GetMovieDetail {
+class MockGetMovieDetail extends _i1.Mock implements _i4.GetMovieDetail {
   MockGetMovieDetail() {
     _i1.throwOnMissingStub(this);
   }
@@ -61,13 +63,13 @@ class MockGetMovieDetail extends _i1.Mock implements _i2.GetMovieDetail {
       ) as _i2.MovieRepository);
 
   @override
-  _i4.Future<_i3.Either<_i2.Failure, _i2.MovieDetail>> execute(int? id) =>
+  _i5.Future<_i3.Either<_i2.Failure, _i2.MovieDetail>> execute(int? id) =>
       (super.noSuchMethod(
         Invocation.method(
           #execute,
           [id],
         ),
-        returnValue: _i4.Future<_i3.Either<_i2.Failure, _i2.MovieDetail>>.value(
+        returnValue: _i5.Future<_i3.Either<_i2.Failure, _i2.MovieDetail>>.value(
             _FakeEither_1<_i2.Failure, _i2.MovieDetail>(
           this,
           Invocation.method(
@@ -75,14 +77,14 @@ class MockGetMovieDetail extends _i1.Mock implements _i2.GetMovieDetail {
             [id],
           ),
         )),
-      ) as _i4.Future<_i3.Either<_i2.Failure, _i2.MovieDetail>>);
+      ) as _i5.Future<_i3.Either<_i2.Failure, _i2.MovieDetail>>);
 }
 
 /// A class which mocks [GetMovieRecommendations].
 ///
 /// See the documentation for Mockito's code generation for more information.
 class MockGetMovieRecommendations extends _i1.Mock
-    implements _i2.GetMovieRecommendations {
+    implements _i6.GetMovieRecommendations {
   MockGetMovieRecommendations() {
     _i1.throwOnMissingStub(this);
   }
@@ -97,13 +99,13 @@ class MockGetMovieRecommendations extends _i1.Mock
       ) as _i2.MovieRepository);
 
   @override
-  _i4.Future<_i3.Either<_i2.Failure, List<_i2.Movie>>> execute(dynamic id) =>
+  _i5.Future<_i3.Either<_i2.Failure, List<_i2.Movie>>> execute(dynamic id) =>
       (super.noSuchMethod(
         Invocation.method(
           #execute,
           [id],
         ),
-        returnValue: _i4.Future<_i3.Either<_i2.Failure, List<_i2.Movie>>>.value(
+        returnValue: _i5.Future<_i3.Either<_i2.Failure, List<_i2.Movie>>>.value(
             _FakeEither_1<_i2.Failure, List<_i2.Movie>>(
           this,
           Invocation.method(
@@ -111,5 +113,5 @@ class MockGetMovieRecommendations extends _i1.Mock
             [id],
           ),
         )),
-      ) as _i4.Future<_i3.Either<_i2.Failure, List<_i2.Movie>>>);
+      ) as _i5.Future<_i3.Either<_i2.Failure, List<_i2.Movie>>>);
 }

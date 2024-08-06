@@ -1,5 +1,7 @@
 import 'package:core/core.dart';
 import 'package:flutter/foundation.dart';
+import 'package:tv_series/tv_series.dart';
+import 'package:watchlist/watchlist.dart';
 
 class TvSeriesDetailNotifier extends ChangeNotifier {
   static const watchlistAddSuccessMessage = 'Added to Watchlist';
