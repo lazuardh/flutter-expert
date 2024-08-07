@@ -63,8 +63,8 @@ void main() {
     blocTest<WatchlistTvSeriesBloc, WatchlistTvSeriesState>(
       'should emit [loading, Error] when get watchlist is unsuccessfully',
       build: () {
-        when(mockGetWatchlistTvSeries.execute())
-            .thenAnswer((_) async => Left(ServerFailure('Server Failure')));
+        when(mockGetWatchlistTvSeries.execute()).thenAnswer(
+            (_) async => const Left(ServerFailure('Server Failure')));
 
         return bloc;
       },
@@ -137,17 +137,17 @@ void main() {
       'should update [Watchlist Status] when add watchlist is successfully',
       build: () {
         when(mockSaveTvSeriesToWatchlist.execute(testTvSeriesDetail))
-            .thenAnswer((_) async => Right(watchlistAddSuccessMessage));
+            .thenAnswer((_) async => const Right(watchlistAddSuccessMessage));
 
-        // when(mockGetWatchListStatusTvSeries.execute(testTvSeriesDetail.id))
-        //     .thenAnswer((_) async => true);
+        when(mockGetWatchListStatusTvSeries.execute(testTvSeriesDetail.id))
+            .thenAnswer((_) async => true);
 
         return bloc;
       },
       act: (bloc) => bloc.add(OnAddTvSeriesWatchlist(testTvSeriesDetail)),
       expect: () => [
         WatchlistTvSeriesMessage(watchlistAddSuccessMessage),
-        // AddedMovieToWatchlist(true)
+        AddedTvSeriesToWatchlist(true)
       ],
       verify: (bloc) {
         verify(mockSaveTvSeriesToWatchlist.execute(testTvSeriesDetail));
@@ -159,7 +159,7 @@ void main() {
       build: () {
         when(mockSaveTvSeriesToWatchlist.execute(testTvSeriesDetail))
             .thenAnswer((_) async =>
-                Left(DatabaseFailure('can\'t add data to watchlist')));
+                const Left(DatabaseFailure('can\'t add data to watchlist')));
 
         return bloc;
       },

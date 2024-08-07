@@ -63,8 +63,8 @@ void main() {
     blocTest<WatchlistMovieBloc, WatchlistMovieState>(
       'should emit [loading, Error] when get watchlist is unsuccessfully',
       build: () {
-        when(mockGetWatchlistMovies.execute())
-            .thenAnswer((_) async => Left(ServerFailure('Server Failure')));
+        when(mockGetWatchlistMovies.execute()).thenAnswer(
+            (_) async => const Left(ServerFailure('Server Failure')));
 
         return bloc;
       },
@@ -137,7 +137,7 @@ void main() {
       'should update [Watchlist Status] when add watchlist is successfully',
       build: () {
         when(mockSaveWatchlist.execute(testMovieDetail))
-            .thenAnswer((_) async => Right(watchlistAddSuccessMessage));
+            .thenAnswer((_) async => const Right(watchlistAddSuccessMessage));
 
         when(mockGetWatchListStatus.execute(testMovieDetail.id))
             .thenAnswer((_) async => true);
@@ -157,8 +157,8 @@ void main() {
     blocTest<WatchlistMovieBloc, WatchlistMovieState>(
       'should throw [failure message status] when add watchlist is unsuccessfully',
       build: () {
-        when(mockSaveWatchlist.execute(testMovieDetail)).thenAnswer(
-            (_) async => Left(DatabaseFailure('can\'t add data to watchlist')));
+        when(mockSaveWatchlist.execute(testMovieDetail)).thenAnswer((_) async =>
+            const Left(DatabaseFailure('can\'t add data to watchlist')));
 
         return bloc;
       },
@@ -175,8 +175,8 @@ void main() {
     blocTest<WatchlistMovieBloc, WatchlistMovieState>(
       'should update [Watchlist Status] when removed watchlist is successfully',
       build: () {
-        when(mockRemoveWatchlist.execute(testMovieDetail))
-            .thenAnswer((_) async => Right(watchlistRemoveSuccessMessage));
+        when(mockRemoveWatchlist.execute(testMovieDetail)).thenAnswer(
+            (_) async => const Right(watchlistRemoveSuccessMessage));
 
         return bloc;
       },
@@ -194,7 +194,8 @@ void main() {
       'should throw [failure message status] when removed watchlist is unsuccessfully',
       build: () {
         when(mockRemoveWatchlist.execute(testMovieDetail)).thenAnswer(
-            (_) async => Left(DatabaseFailure('can\'t add data to watchlist')));
+            (_) async =>
+                const Left(DatabaseFailure('can\'t add data to watchlist')));
 
         return bloc;
       },

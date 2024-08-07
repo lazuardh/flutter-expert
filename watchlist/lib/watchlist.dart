@@ -10,5 +10,4 @@ export 'domain/usecase/tv_series/remove_tv_series_watchlist.dart';
 export 'domain/usecase/tv_series/save_tv_series_watchlist.dart';
 export 'presentation/bloc/watchlist_movie/watchlist_movie_bloc.dart';
 export 'presentation/bloc/watchlist_tv_series/watchlist_tv_series_bloc.dart';
-export 'presentation/bloc/get_all_watchlist/get_all_watchlist_bloc.dart';
 export 'presentation/pages/bloc_watchlist_page.dart';

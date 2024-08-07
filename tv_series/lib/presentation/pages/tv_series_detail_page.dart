@@ -34,33 +34,53 @@ class _TvSeriesDetailPageState extends State<TvSeriesDetailPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: BlocBuilder<DetailTvSeriesBloc, DetailTvSeriesState>(
-        builder: (context, state) {
-          if (state is DetailTvSeriesLoading) {
-            return const Center(
-              child: CircularProgressIndicator(),
-            );
-          } else if (state is DetailTvSeriesHasData) {
-            final series = state.tvSeries;
-            return SafeArea(child:
-                BlocBuilder<WatchlistTvSeriesBloc, WatchlistTvSeriesState>(
-              builder: (context, watchlistState) {
-                bool isAddedWatchlist =
-                    watchlistState is AddedTvSeriesToWatchlist
-                        ? watchlistState.isAddedToWatchlist
-                        : false;
-
-                return _DetailContent(
-                  series,
-                  state.recomendation,
-                  isAddedWatchlist,
-                );
-              },
+      body: BlocListener<WatchlistTvSeriesBloc, WatchlistTvSeriesState>(
+        listener: (context, state) {
+          if (state is WatchlistTvSeriesMessage) {
+            ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+              content: Text(state.message),
+              duration: const Duration(milliseconds: 1000),
             ));
-          } else {
-            return const Center(child: Text("Failed"));
+          }
+
+          if (state is WatchlistTvSeriesError) {
+            showDialog(
+                context: context,
+                builder: (context) {
+                  return AlertDialog(
+                    content: Text(state.message),
+                  );
+                });
           }
         },
+        child: BlocBuilder<DetailTvSeriesBloc, DetailTvSeriesState>(
+          builder: (context, state) {
+            if (state is DetailTvSeriesLoading) {
+              return const Center(
+                child: CircularProgressIndicator(),
+              );
+            } else if (state is DetailTvSeriesHasData) {
+              final series = state.tvSeries;
+              return SafeArea(child:
+                  BlocBuilder<WatchlistTvSeriesBloc, WatchlistTvSeriesState>(
+                builder: (context, watchlistState) {
+                  bool isAddedWatchlist =
+                      watchlistState is AddedTvSeriesToWatchlist
+                          ? watchlistState.isAddedToWatchlist
+                          : false;
+
+                  return _DetailContent(
+                    series,
+                    state.recomendation,
+                    isAddedWatchlist,
+                  );
+                },
+              ));
+            } else {
+              return const Center(child: Text("Failed"));
+            }
+          },
+        ),
       ),
     );
   }

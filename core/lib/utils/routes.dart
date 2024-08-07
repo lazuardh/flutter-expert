@@ -8,3 +8,4 @@ const POPULAR_TV_SERIES_ROUTE = '/popular-tv-series';
 const TOP_RATED_TV_SERIES_ROUTE = '/top-rated-tv_series';
 const TV_SERIES_DETAIL_ROUTE = '/tv-series-detail';
 const SEARCH_TV_SERIES_ROUTE = '/search-tv-series';
+const WATHCLIST_ROUTE = '/watchlist-page';

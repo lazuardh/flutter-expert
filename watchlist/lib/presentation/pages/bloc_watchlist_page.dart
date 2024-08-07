@@ -5,8 +5,6 @@ import 'package:movies/movies.dart';
 import 'package:watchlist/watchlist.dart';
 
 class BlocWatchlistPage extends StatefulWidget {
-  static const ROUTE_NAME = '/watchlist-bloc';
-
   const BlocWatchlistPage({super.key});
 
   @override
@@ -18,7 +16,8 @@ class _BlocWatchlistPageState extends State<BlocWatchlistPage> with RouteAware {
   void initState() {
     super.initState();
     Future.microtask(() {
-      context.read<GetAllWatchlistBloc>().add(OnLoadAllWathclist());
+      context.read<WatchlistMovieBloc>().add(OnGetMovieWatchlist());
+      context.read<WatchlistTvSeriesBloc>().add(OnGetTvSeriesWatchlist());
     });
   }
 
@@ -30,42 +29,95 @@ class _BlocWatchlistPageState extends State<BlocWatchlistPage> with RouteAware {
 
   @override
   void didPopNext() {
-    context.read<GetAllWatchlistBloc>().add(OnLoadAllWathclist());
+    context.read<WatchlistMovieBloc>().add(OnGetMovieWatchlist());
+    context.read<WatchlistTvSeriesBloc>().add(OnGetTvSeriesWatchlist());
   }
 
   @override
   Widget build(BuildContext context) {
+    final statemovie = context.watch<WatchlistMovieBloc>().state;
+    final statetvseries = context.watch<WatchlistTvSeriesBloc>().state;
+
     return Scaffold(
       appBar: AppBar(
         title: const Text('Watchlist'),
       ),
       body: Padding(
         padding: const EdgeInsets.all(8.0),
-        child: BlocBuilder<GetAllWatchlistBloc, GetAllWatchlistState>(
-          builder: (context, state) {
-            if (state is GetAllWatchlistLoading) {
-              return const Center(
-                child: CircularProgressIndicator(),
-              );
-            } else if (state is GetAllWatchlistHasData) {
-              return ListView(
-                children: [
-                  ...state.movie.map((movie) => MovieCard(movie)),
-                  ...state.tvSeries.map((tv) => TvSeriesCard(tv)),
-                ],
-              );
-            } else if (state is GetAllWatchlistEmpty) {
-              return const Center(
-                child: Text('Empty Watchlist'),
-              );
-            } else {
-              return const Center(
-                key: Key('error_message'),
-                child: Text('Failed'),
-              );
-            }
-          },
-        ),
+        child: statemovie is WatchlistMovieEmpty &&
+                statetvseries is WatchlistTvSeriesEmpty
+            ? const Center(
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Icon(Icons.visibility_off_outlined, size: 20),
+                    SizedBox(width: 10),
+                    Text('No watchlist available'),
+                  ],
+                ),
+              )
+            : SingleChildScrollView(
+                child: Column(
+                  children: [
+                    BlocBuilder<WatchlistMovieBloc, WatchlistMovieState>(
+                      builder: (context, state) {
+                        if (state is WatchlistMovieLoading) {
+                          return const Center(
+                            child: CircularProgressIndicator(),
+                          );
+                        } else if (state is WatchlistMovieHasData) {
+                          return Visibility(
+                            visible: state.list.isNotEmpty,
+                            child: ListView.builder(
+                              physics: const NeverScrollableScrollPhysics(),
+                              shrinkWrap: true,
+                              itemBuilder: (context, index) {
+                                return MovieCard(state.list[index]);
+                              },
+                              itemCount: state.list.length,
+                            ),
+                          );
+                        } else if (state is WatchlistMovieEmpty) {
+                          return const SizedBox.shrink();
+                        } else {
+                          return const Center(
+                            key: Key('error_message'),
+                            child: Text('Failed'),
+                          );
+                        }
+                      },
+                    ),
+                    BlocBuilder<WatchlistTvSeriesBloc, WatchlistTvSeriesState>(
+                      builder: (context, state) {
+                        if (state is WatchlistTvSeriesLoading) {
+                          return const Center(
+                            child: CircularProgressIndicator(),
+                          );
+                        } else if (state is WatchlistTvSeriesHasData) {
+                          return Visibility(
+                            visible: state.list.isNotEmpty,
+                            child: ListView.builder(
+                              physics: const NeverScrollableScrollPhysics(),
+                              shrinkWrap: true,
+                              itemBuilder: (context, index) {
+                                return TvSeriesCard(state.list[index]);
+                              },
+                              itemCount: state.list.length,
+                            ),
+                          );
+                        } else if (state is WatchlistTvSeriesEmpty) {
+                          return const SizedBox.shrink();
+                        } else {
+                          return const Center(
+                            key: Key('error_message'),
+                            child: Text('Failed'),
+                          );
+                        }
+                      },
+                    ),
+                  ],
+                ),
+              ),
       ),
     );
   }

@@ -41,6 +41,7 @@ class WatchlistTvSeriesBloc
         (failure) => emit(WatchlistTvSeriesError(failure.message)),
         (message) {
           emit(WatchlistTvSeriesMessage(message));
+          add(OnLoadedTvSeriesWatchlist(event.detail.id));
         },
       );
     });

@@ -10,7 +10,9 @@ import 'package:search/search.dart';
 import 'package:tv_series/tv_series.dart';
 import 'package:watchlist/watchlist.dart';
 
-void main() {
+Future<void> main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await HttpSSLPinning.init();
   di.init();
   runApp(const MyApp());
 }
@@ -22,48 +24,14 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MultiProvider(
       providers: [
-        ChangeNotifierProvider(
-          create: (_) => di.locator<MovieListNotifier>(),
-        ),
-        ChangeNotifierProvider(
-          create: (_) => di.locator<MovieDetailNotifier>(),
-        ),
-        ChangeNotifierProvider(
-          create: (_) => di.locator<MovieSearchNotifier>(),
-        ),
-        ChangeNotifierProvider(
-          create: (_) => di.locator<TopRatedMoviesNotifier>(),
-        ),
-        ChangeNotifierProvider(
-          create: (_) => di.locator<PopularMoviesNotifier>(),
-        ),
-        ChangeNotifierProvider(
-          create: (_) => di.locator<WatchlistMovieNotifier>(),
-        ),
-        ChangeNotifierProvider(
-          create: (_) => di.locator<SeriesListNotifier>(),
-        ),
-        ChangeNotifierProvider(
-          create: (_) => di.locator<TvSeriesDetailNotifier>(),
-        ),
-        ChangeNotifierProvider(
-          create: (_) => di.locator<TvSeriesSearchNotifier>(),
-        ),
-        ChangeNotifierProvider(
-          create: (_) => di.locator<TopRatedTvSeriesNotifier>(),
-        ),
-        ChangeNotifierProvider(
-          create: (_) => di.locator<PopularTvSeriesNotifier>(),
-        ),
-        ChangeNotifierProvider(
-          create: (_) => di.locator<WatchlistTvSeriesNotifier>(),
-        ),
         BlocProvider(
           create: (_) => di.locator<SearchMovieBloc>(),
         ),
         BlocProvider(
           create: (_) => di.locator<SearchtvseriesBloc>(),
         ),
+
+        //movie
         BlocProvider(
           create: (_) => di.locator<MovieDetailBloc>(),
         ),
@@ -76,15 +44,28 @@ class MyApp extends StatelessWidget {
         BlocProvider(
           create: (_) => di.locator<PopularMoviesBloc>(),
         ),
+
+        //tvSeries
+        BlocProvider(
+          create: (_) => di.locator<DetailTvSeriesBloc>(),
+        ),
+        BlocProvider(
+          create: (_) => di.locator<NowPlayingTvSeriesBloc>(),
+        ),
+        BlocProvider(
+          create: (_) => di.locator<TopRatedTvSeriesBloc>(),
+        ),
+        BlocProvider(
+          create: (_) => di.locator<PopularTvSeriesBloc>(),
+        ),
+
+        //watchlist
         BlocProvider(
           create: (_) => di.locator<WatchlistMovieBloc>(),
         ),
         BlocProvider(
           create: (_) => di.locator<WatchlistTvSeriesBloc>(),
         ),
-        BlocProvider(
-          create: (_) => di.locator<GetAllWatchlistBloc>(),
-        )
       ],
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
@@ -103,10 +84,12 @@ class MyApp extends StatelessWidget {
               return MaterialPageRoute(builder: (_) => const HomeMoviePage());
             case POPULAR_MOVIES_ROUTE:
               return CupertinoPageRoute(
-                  builder: (_) => const PopularMoviesPage());
+                builder: (_) => const PopularMoviesPage(),
+              );
             case TOP_RATED_MOVIE_ROUTE:
               return CupertinoPageRoute(
-                  builder: (_) => const TopRatedMoviesPage());
+                builder: (_) => const TopRatedMoviesPage(),
+              );
             case MOVIE_DETAIL_ROUTE:
               final id = settings.arguments as int;
               return MaterialPageRoute(
@@ -114,13 +97,17 @@ class MyApp extends StatelessWidget {
                 settings: settings,
               );
             case TV_SERIES_ROUTE:
-              return MaterialPageRoute(builder: (_) => const SeriesTvPage());
+              return MaterialPageRoute(
+                builder: (_) => const SeriesTvPage(),
+              );
             case POPULAR_TV_SERIES_ROUTE:
               return CupertinoPageRoute(
-                  builder: (_) => const PopularTvSeriesPage());
+                builder: (_) => const PopularTvSeriesPage(),
+              );
             case TOP_RATED_TV_SERIES_ROUTE:
               return CupertinoPageRoute(
-                  builder: (_) => const TopRatedTvSeriesPage());
+                builder: (_) => const TopRatedTvSeriesPage(),
+              );
             case TV_SERIES_DETAIL_ROUTE:
               final id = settings.arguments as int;
               return MaterialPageRoute(
@@ -129,18 +116,20 @@ class MyApp extends StatelessWidget {
               );
             case SEARCH_MOVIE_ROUTE:
               return CupertinoPageRoute(
-                  builder: (_) => const SearchMoviePage());
+                builder: (_) => const SearchMoviePage(),
+              );
             case SEARCH_TV_SERIES_ROUTE:
               return CupertinoPageRoute(
-                  builder: (_) => const SearchTvSeriesPage());
-            case WatchlistMoviesPage.ROUTE_NAME:
+                builder: (_) => const SearchTvSeriesPage(),
+              );
+            case WATHCLIST_ROUTE:
               return MaterialPageRoute(
-                  builder: (_) => const WatchlistMoviesPage());
-            case BlocWatchlistPage.ROUTE_NAME:
+                builder: (_) => const BlocWatchlistPage(),
+              );
+            case ABOUT_ROUTE:
               return MaterialPageRoute(
-                  builder: (_) => const BlocWatchlistPage());
-            case AboutPage.ROUTE_NAME:
-              return MaterialPageRoute(builder: (_) => const AboutPage());
+                builder: (_) => const AboutPage(),
+              );
             default:
               return MaterialPageRoute(builder: (_) {
                 return const Scaffold(
