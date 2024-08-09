@@ -20,7 +20,8 @@ void main() {
     searchBloc = SearchMovieBloc(mockSearchMovies);
   });
 
-  final tQuery = 'Spider-Man';
+  const tQuery = 'Spider-Man';
+  const query = 'testing';
 
   test('initial state should be empty', () {
     expect(searchBloc.state, SearchEmpty());
@@ -48,7 +49,7 @@ void main() {
     'Should emit [Loading, Error] when get search is unsuccessful',
     build: () {
       when(mockSearchMovies.execute(tQuery))
-          .thenAnswer((_) async => Left(ServerFailure('Server Failure')));
+          .thenAnswer((_) async => const Left(ServerFailure('Server Failure')));
       return searchBloc;
     },
     act: (bloc) => bloc.add(OnQueryChangedMovies(tQuery)),
@@ -59,6 +60,26 @@ void main() {
     ],
     verify: (bloc) {
       verify(mockSearchMovies.execute(tQuery));
+    },
+  );
+
+  blocTest(
+    'should emit [Loading, Empty] when get seach is not found',
+    build: () {
+      when(mockSearchMovies.execute(query))
+          .thenAnswer((_) async => const Right([]));
+
+      return searchBloc;
+    },
+    act: (bloc) => bloc.add(OnQueryChangedMovies(query)),
+    wait: const Duration(milliseconds: 500),
+    expect: () => [
+      SearchLoading(),
+      SearchHasData(const []),
+    ],
+    verify: (bloc) {
+      verify(mockSearchMovies.execute(query));
+      return SearchHasData(const []);
     },
   );
 }

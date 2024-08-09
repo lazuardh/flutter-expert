@@ -2,6 +2,7 @@ import 'package:core/core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:movies/movies.dart';
+import 'package:tv_series/presentation/widget/tv_series_card_list.dart';
 import 'package:watchlist/watchlist.dart';
 
 class BlocWatchlistPage extends StatefulWidget {

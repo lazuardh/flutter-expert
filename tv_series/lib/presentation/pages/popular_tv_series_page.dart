@@ -1,7 +1,8 @@
-import 'package:core/core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:tv_series/tv_series.dart';
+import 'package:tv_series/presentation/widget/tv_series_card_list.dart';
+
+import '../bloc/popular_tv_series/popular_tv_series_bloc.dart';
 
 class PopularTvSeriesPage extends StatefulWidget {
   const PopularTvSeriesPage({super.key});

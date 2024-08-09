@@ -4,6 +4,7 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
 import 'package:movies/movies.dart';
+import 'package:movies/presentation/pages/movie_detail_page.dart';
 import 'package:watchlist/watchlist.dart';
 
 import '../../dummy_data/dummy_objects.dart';
@@ -42,16 +43,14 @@ void main() {
         .thenAnswer((_) => Stream.value(AddedMovieToWatchlist(false)));
     when(mockWatchlistMovieBloc.state).thenReturn(AddedMovieToWatchlist(false));
 
-    final watchlistButtonIcon = find.byIcon(Icons.add);
-
     await tester.pumpWidget(
         makeTestableWidget(MovieDetailPage(id: testMovieDetail.id)));
 
-    expect(watchlistButtonIcon, findsOneWidget);
+    expect(find.byIcon(Icons.add), findsOneWidget);
   });
 
   testWidgets(
-      'Watchlist button should dispay check icon when movie is added to wathclist',
+      'Watchlist button should display check icon when movie is added to watchlist',
       (WidgetTester tester) async {
     when(mockMovieDetailBloc.stream).thenAnswer((_) =>
         Stream.value(MovieDetailHasData(testMovieDetail, testMovieList)));
@@ -61,12 +60,10 @@ void main() {
         .thenAnswer((_) => Stream.value(AddedMovieToWatchlist(true)));
     when(mockWatchlistMovieBloc.state).thenReturn(AddedMovieToWatchlist(true));
 
-    final watchlistButtonIcon = find.byIcon(Icons.check);
-
     await tester.pumpWidget(
         makeTestableWidget(MovieDetailPage(id: testMovieDetail.id)));
 
-    expect(watchlistButtonIcon, findsOneWidget);
+    expect(find.byIcon(Icons.check), findsOneWidget);
   });
 
   testWidgets(
@@ -76,17 +73,14 @@ void main() {
         Stream.value(MovieDetailHasData(testMovieDetail, testMovieList)));
     when(mockMovieDetailBloc.state)
         .thenReturn(MovieDetailHasData(testMovieDetail, testMovieList));
-    when(mockWatchlistMovieBloc.stream)
-        .thenAnswer((_) => Stream.value(AddedMovieToWatchlist(false)));
-    when(mockWatchlistMovieBloc.state).thenReturn(AddedMovieToWatchlist(false));
     when(mockWatchlistMovieBloc.stream).thenAnswer(
         (_) => Stream.value(WatchlistMovieMessage('Added to Watchlist')));
     when(mockWatchlistMovieBloc.state)
         .thenReturn(WatchlistMovieMessage('Added to Watchlist'));
 
-    final watchlistButton = find.byType(ElevatedButton);
-
     await tester.pumpWidget(makeTestableWidget(const MovieDetailPage(id: 1)));
+
+    final watchlistButton = find.byType(ElevatedButton);
 
     expect(find.byIcon(Icons.add), findsOneWidget);
 

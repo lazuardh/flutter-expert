@@ -1,15 +1,27 @@
 import 'package:about/about_page.dart';
 import 'package:core/core.dart';
+import 'package:core/utils/http_ssl_pinning.dart';
 import 'package:ditonton/firebase_options.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:movies/movies.dart';
+import 'package:movies/presentation/pages/home_movie_page.dart';
+import 'package:movies/presentation/pages/movie_detail_page.dart';
+import 'package:movies/presentation/pages/popular_movies_page.dart';
+import 'package:movies/presentation/pages/top_rated_movies_page.dart';
 import 'package:provider/provider.dart';
 import 'package:ditonton/injection.dart' as di;
+import 'package:search/presentation/pages/search_movie_page.dart';
+import 'package:search/presentation/pages/search_tv_series_page.dart';
 import 'package:search/search.dart';
+import 'package:tv_series/presentation/pages/popular_tv_series_page.dart';
+import 'package:tv_series/presentation/pages/series_tv_page.dart';
+import 'package:tv_series/presentation/pages/top_rated_tv_series_page.dart';
+import 'package:tv_series/presentation/pages/tv_series_detail_page.dart';
 import 'package:tv_series/tv_series.dart';
+import 'package:watchlist/presentation/pages/bloc_watchlist_page.dart';
 import 'package:watchlist/watchlist.dart';
 
 Future<void> main() async {

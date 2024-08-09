@@ -2,7 +2,10 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:core/core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:tv_series/tv_series.dart';
+
+import '../bloc/now_playing_tv_series/now_playing_tv_series_bloc.dart';
+import '../bloc/popular_tv_series/popular_tv_series_bloc.dart';
+import '../bloc/top_rated_tv_series/top_rated_tv_series_bloc.dart';
 
 class SeriesTvPage extends StatefulWidget {
   const SeriesTvPage({super.key});

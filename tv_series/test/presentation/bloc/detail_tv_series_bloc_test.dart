@@ -32,7 +32,7 @@ void main() {
     'should emit [Loading, hasData] when list data gotten is successfully',
     build: () {
       when(mockGetTvSeriesDetail.execute(tId))
-          .thenAnswer((_) async => Right(testTvSeriesDetail));
+          .thenAnswer((_) async => const Right(testTvSeriesDetail));
 
       when(mockGetTvSeriesRecommendations.execute(tId))
           .thenAnswer((_) async => Right(testSeriesList));
@@ -77,7 +77,7 @@ void main() {
     'should emit recomendation is  [Loading, empty]',
     build: () {
       when(mockGetTvSeriesDetail.execute(tId))
-          .thenAnswer((_) async => Right(testTvSeriesDetail));
+          .thenAnswer((_) async => const Right(testTvSeriesDetail));
 
       when(mockGetTvSeriesRecommendations.execute(tId))
           .thenAnswer((_) async => const Right([]));

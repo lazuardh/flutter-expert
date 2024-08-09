@@ -21,7 +21,8 @@ void main() {
     bloc = SearchtvseriesBloc(mockSearchTvSeries);
   });
 
-  final tQuery = 'Hazbin Hotel';
+  const tQuery = 'Hazbin Hotel';
+  const query = 'testing';
 
   test('initial state should be empty', () {
     expect(bloc.state, SearchtvseriesEmpty());
@@ -63,6 +64,26 @@ void main() {
     ],
     verify: (bloc) {
       verify(mockSearchTvSeries.execute(tQuery));
+    },
+  );
+
+  blocTest(
+    'should emit [Loading, Empty] when get seach is not found',
+    build: () {
+      when(mockSearchTvSeries.execute(query))
+          .thenAnswer((_) async => const Right([]));
+
+      return bloc;
+    },
+    act: (bloc) => bloc.add(OnQueryChangedTvseries(query)),
+    wait: const Duration(milliseconds: 500),
+    expect: () => [
+      SearchtvseriesLoading(),
+      const SearchtvseriesHasData([]),
+    ],
+    verify: (bloc) {
+      verify(mockSearchTvSeries.execute(query));
+      return const SearchtvseriesHasData([]);
     },
   );
 }

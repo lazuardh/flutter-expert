@@ -14,13 +14,17 @@ dependencies:
   dartz: ^0.10.0-nullsafety.2
   rxdart: ^0.27.1
   cached_network_image: ^3.3.1
+  flutter_bloc: ^8.1.6
+  bloc_test: ^9.1.7
 
   core:
     path: ../core
+  
   movies: 
     path: ../movies
-  flutter_bloc: ^8.1.6
-  bloc_test: ^9.1.7
+  
+  tv_series:
+    path: ../tv_series
  
 
 dev_dependencies:
