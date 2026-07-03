@@ -12,7 +12,7 @@ abstract class SeriesRemoteDataSource {
 }
 
 class SeriesRemoteDataSourceImpl extends SeriesRemoteDataSource {
-  static const API_KEY = 'api_key=2174d146bb9c0eab47529b2e77d6b526';
+  static const API_KEY = 'api_key=3243ec14563a437090db4908138718c8';
   static const BASE_URL = 'https://api.themoviedb.org/3';
 
   final http.Client client;
@@ -21,8 +21,9 @@ class SeriesRemoteDataSourceImpl extends SeriesRemoteDataSource {
 
   @override
   Future<List<TvSeriesModel>> getAiringSeries() async {
-    final response =
-        await client.get(Uri.parse('$BASE_URL/tv/on_the_air?$API_KEY'));
+    final response = await client.get(
+      Uri.parse('$BASE_URL/tv/on_the_air?$API_KEY'),
+    );
 
     if (response.statusCode == 200) {
       return TvSeriesResponse.fromJson(json.decode(response.body)).seriesList;
